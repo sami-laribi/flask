@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Avis Assurances</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ url_for('static',filename='plugins/fontawesome-free/css/all.min.css') }}">  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static',filename='styles/css/adminlte.min.css') }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+          <style>
+.fa-star{color:grey;}
+.checked {
+  color: gold;
+}
+#buttonn {
+  display: inline-block;
+  background-color: #17a2b8;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  margin: 30px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s;
+  z-index: 1000;
+}
+#buttonn:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#buttonn:active {
+  background-color: #555;
+}
+#buttonn::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+
+</style>
+</head>
+<body class="hold-transition sidebar-mini sidebar-collapse" id="body">
+<!-- Site wrapper -->
+<a id="buttonn" href="#body"></a>
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="/" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link">Accueil</a>
+      </li>
+    </ul>
+
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Right navbar links -->
+   
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+           <img src="{{ url_for('static',filename='img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+
+      <span class="brand-text font-weight-light">Assurances</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="/" class="nav-link">
+                  <i class="far nav-icon"></i>
+                  <p>Assurances</p>
+                </a>
+              </li>
+                <li class="nav-item">
+                <a href="comments" class="nav-link">
+                  <i class="far nav-icon"></i>
+                  <p>Commentaires</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="content-header">
+  <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+                    <div class="col-sm-6">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Nom assurances</label>
+          <form name="f" method="post" action="comments.html">  
+            
+             <select class="form-control" name="nom_com">
+                          {%for i in nom%}
+                <option value={{i}} {%if (i == selected)%} selected {%endif%}> {{i}} </option>
+              {%endfor%}
+                        </select>
+          
+                    <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                  
+
+          </form> 
+                      </div>
+                    </div>
+        </div>
+        </div>
+        </section>
+      </div>
+
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Commentaires par catégorie</h1><br>
+            <h3>{{selected}}</h3><br>
+            <h5>Lieste des commentaires qui mentionnent : </h5>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+              <li class="breadcrumb-item active"><a href="comments">commentaires</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <!-- Default box -->
+           <div class="d-grid gap-2 d-md-block">
+          
+            {%for i in range(20) %}
+                  
+                  <button type="button" class="btn btn-secondary" id="b{{i}}" value="{{data[i][0]}}" onclick='fio(this.value)'>{{data[i][0]}}</button>
+                  
+            {% endfor %}
+          
+          </div>
+           
+           <br><div class="col-sm-6 row mb-2">
+          <h5>commentaires :</h5>
+        </div>
+
+
+
+            <div class="row">
+          <div class="col-12">
+            <div  id="kkbb">
+
+            </div></div></div>
+         
+
+    </div>
+  </div>
+</div>
+    </section>
+              </div>
+              <!-- /.card-body -->
+      
+ 
+  
+    <!-- /.content -->
+  
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.0.5
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{{ url_for('static',filename='plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static',filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- AdminLTE App -->
+<script src="{{ url_for('static',filename='plugins/js/adminlte.js') }}"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="{{ url_for('static',filename='plugins/js/demo.js') }}"></script>
+<script src="{{ url_for('static',filename='plugins/js/pages/dashboard3.js') }}"></script>
+<script  type = "text/javascript">           
+
+            
+
+
+              function fio(clicked){
+                  
+                 
+                    '{% for i in data %}'
+                         
+                          if('{{i[0]}}'==clicked){
+                               var id=0;
+                               var idetoile="e"+id;
+                               var card=document.getElementById("kkbb");
+                              card.innerHTML="";
+                              '{% for k in i[1]%}'
+                               
+                                      var div=document.createElement("div");
+                                      div.className="card";
+                                      div.id=id;
+                                      document.getElementById("kkbb").appendChild(div);
+
+                                      var nom=document.createElement("h3");
+                                      var nomc=document.createTextNode('{{k[1]}}');
+                                      nom.appendChild(nomc);
+                                      document.getElementById(id).appendChild(nom);
+
+
+                                       var divetoile=document.createElement("div");
+                                      divetoile.style.display="inline-block";
+                                      divetoile.id=idetoile;
+                                      document.getElementById(id).appendChild(divetoile);
+
+                                         var n=parseInt('{{k[4]}}');
+                                      for (var r=0; r<n ; r++){
+                                      var etoile=document.createElement("span");
+                                      etoile.className="fa fa-star checked";
+                                      document.getElementById(idetoile).appendChild(etoile);
+                                      }
+                                      for (var r=0;r<(5-n); r++ ){
+                                      var etoile=document.createElement("span");
+                                      etoile.className="fa fa-star";
+                                      document.getElementById(idetoile).appendChild(etoile);
+                                      }
+
+                                      
+                                      var date=document.createElement("label");
+                                      var datec=document.createTextNode('{{k[2]}}');
+                                      date.appendChild(datec);
+                                      document.getElementById(id).appendChild(date);
+                                     
+                                      var com=document.createElement("p");
+                                      var comc=document.createTextNode('{{k[3]}}');
+                                      com.appendChild(comc);
+                                      document.getElementById(id).appendChild(com);
+                                            id=id+1;
+                                            idetoile="e"+id;
+                             
+                              '{% endfor %}'
+
+                            }
+
+                    '{% endfor %}'
+          
+                   
+
+
+              }
+            
+    
+          </script>
+</body>
+</html>

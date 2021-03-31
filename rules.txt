@@ -1,0 +1,4 @@
+html --->dossier "Templates"
+js ----> dossier "static/plugins"
+css---->dossier "static/styles"
+
